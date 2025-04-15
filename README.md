@@ -228,5 +228,12 @@ Each class is organized in the same structure in order to guarantee ease of usag
 	- `N` is the constant defining the relative position of the low-pass filter of the derivative action
 	- `M` is the constant defining the relative position of the low-pass filter of the acceleration action
 	- `T_f` is the time constant of the input filter
+	- `b` and `c` are the set-point weighting factor for the proportional and derivatives action 
 	- `n` is the order of the input filter defined in the set `{0,1,2}`
-	- 
+	- `saturation` is a vector defined as `[low_bound up_bound]` 
+	- `Ts` in the case of constant sampling time, otherwise it is defined at each evaluation
+- **initialize** it initialize the controller with all the inner variable equal to 0, in the case of irregular sampling time, an initial `T_s` is required
+- **set_parameters** is utilized to set all the parameters given in the constructor for gain-scheduling purposes
+- **get_parameters** gives all the parameters of the current implementation of the cotroller
+- **set_control_action** it sets the inner state of the controller to match the desired control action `u_k_des` 
+- **evaluate** evaluates the control law based on the measurement `y_k`, the reference `r_k`, and the feed forward action `uff_k`, in case of irregular sampling time also the current sampling period has `Ts_k` to be given
