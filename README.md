@@ -217,6 +217,7 @@ The code present in this repository is organized in four main classes, one for e
 | ----------------- | -------------------------- | --------------------------- |
 | **Position form** | PIDA_pos.m                 | PIDA_pos_jitter.m           |
 | **Velocity form** | PIDA_vel                   | PIDA_vel_jitter             |
+
 Each class is organized in the same structure in order to guarantee ease of usage. Here the public methods to access the class functionalities are summarized:
 
 -  **Constructor** is the method utilized to create a PIDA controller instance, it requires as input parameter 
