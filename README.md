@@ -228,5 +228,5 @@ Each class is organized in the same structure in order to guarantee ease of usag
 	- `N` is the constant defining the relative position of the low-pass filter of the derivative action
 	- `M` is the constant defining the relative position of the low-pass filter of the acceleration action
 	- `T_f` is the time constant of the input filter
-	- `n` is the order of the input filter defined in the set `\{0,1,2\}`
+	- `n` is the order of the input filter defined in the set `{0,1,2}`
 	- 
