@@ -107,7 +107,7 @@ The **second-order filtered acceleration** is:
 f_a(s) = \frac{e_{a,\text{filt}}(s)}{e(s)} \Rightarrow \frac{T_a^2}{M^2} \frac{d^2 e_{a,\text{filt}}(t)}{dt^2} + 2 \frac{T_a}{M} \frac{d e_{a,\text{filt}}(t)}{dt} + e_{a,\text{filt}}(t) = e_{\text{filt}}(t)
 ```
 
-Substituting the discrete derivatives from earlier (with equations for `m` and `a`), we obtain the actual implementations of these filters, which are shown in the pseudo-code listings in the paper (Listing 5).
+Substituting the discrete derivatives from earlier (with equations for `m` and `a`), we obtain the actual implementations of these filters.
 
 ---
 
@@ -119,7 +119,7 @@ The input filter is discretized similarly, depending on the order `n` of the fil
 f_i(s) = \frac{1}{(T_f s + 1)^n}
 ```
 
-For practical implementation, `n` is typically chosen from the set `{0, 1, 2}`. The corresponding code for discrete input filtering is provided in Listing 3 of the paper.
+For practical implementation, `n` is typically chosen from the set `{0, 1, 2}`.
 
 ---
 
@@ -136,8 +136,6 @@ Where:
 - `Δ(·) = (·)_k - (·)_{k-1}` represents the delta (change) of each control component
 
 This allows efficient computation and supports features like **anti-windup** and **tracking mode** more naturally.
-
-The full velocity form implementation is detailed in Listing 2 of the paper.
 
 ## Controller Features
 
