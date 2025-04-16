@@ -1,5 +1,5 @@
 # PIDA-implementation
-This repository present a refernce formulation of the Proportional Integrative Derivatuive Accelerative (PIDA) controller called also Proportional Integrative Double Derivative (PIDD) controller.
+This repository present a reference formulation of the Proportional Integrative Derivative Accelerative (PIDA) controller called also Proportional Integrative Double Derivative (PIDD) controller.
 The **PIDA control law** can be initially written as:
 
 ```math
@@ -113,7 +113,7 @@ Substituting the discrete derivatives from earlier (with equations for `m` and `
 
 ### 4. Input Filter
 
-The input filter is discretized similarly, depending on the order `n` of the filter:
+The input filter is discretized similarly to the derivatives filters:
 
 ```math
 f_i(s) = \frac{1}{(T_f s + 1)^n}
