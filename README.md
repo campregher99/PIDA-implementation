@@ -27,7 +27,7 @@ To address this, **first-order and second-order filters** are used for the deriv
 C(s) = k_p \left( 1 + \frac{1}{T_i s} + \frac{T_d s}{(T_d / N)s + 1} + \frac{T_a s^2}{\left((T_a / M)s + 1\right)^2} \right)
 ```
 
-Where:
+where:
 
 - `N` and `M` are tuning parameters defining the low-pass filter pole locations for the derivative and acceleration terms.
 
@@ -37,7 +37,7 @@ Additionally, to improve performance and reduce sensitivity to high-frequency me
 f_i(s) = \frac{1}{(T_f s + 1)^n}
 ```
 
-Where:
+where:
 
 - `T_f` is the time constant of the input filter  
 - `n` is the order of the filter
@@ -79,7 +79,7 @@ The derivatives are calculated as:
 \pi_2(t) = a t^2 + b t + c \quad \Rightarrow \quad \frac{d^2\pi_2(t)}{dt^2} = 2a
 ```
 
-Where (from sampled points \( y_1, y_2, y_3 \) at sampling intervals \( t_1, t_2 \)):
+where (from sampled points \( y_1, y_2, y_3 \) at sampling intervals \( t_1, t_2 \)):
 
 ```math
 m = \frac{y_3 - y_2}{t_2}
@@ -98,13 +98,13 @@ This approach allows handling **non-uniform sampling periods** (i.e., jitter).
 The **first-order filtered derivative** is based on the Laplace transform equation:
 
 ```math
-f_d(s) = \frac{e_{d,\text{filt}}(s)}{e_{\text{filt}}(s)} \Rightarrow \frac{T_d}{N} \frac{de_{d,\text{filt}}(t)}{dt} + e_{d,\text{filt}}(t) = e_{\text{filt}}(t)
+\frac{e_{d,\text{filt}}(s)}{e_{\text{filt}}(s)} = \frac{1}{\frac{T_d}{N}s+1} \Rightarrow \frac{T_d}{N} \frac{de_{d,\text{filt}}(t)}{dt} + e_{d,\text{filt}}(t) = e_{\text{filt}}(t)
 ```
 
 The **second-order filtered acceleration** is:
 
 ```math
-f_a(s) = \frac{e_{a,\text{filt}}(s)}{e(s)} \Rightarrow \frac{T_a^2}{M^2} \frac{d^2 e_{a,\text{filt}}(t)}{dt^2} + 2 \frac{T_a}{M} \frac{d e_{a,\text{filt}}(t)}{dt} + e_{a,\text{filt}}(t) = e_{\text{filt}}(t)
+\frac{e_{a,\text{filt}}(s)}{e(s)} = \frac{1}{\left( \frac{T_a}{M}s + 1\right)^2} \Rightarrow \frac{T_a^2}{M^2} \frac{d^2 e_{a,\text{filt}}(t)}{dt^2} + 2 \frac{T_a}{M} \frac{d e_{a,\text{filt}}(t)}{dt} + e_{a,\text{filt}}(t) = e_{\text{filt}}(t)
 ```
 
 Substituting the discrete derivatives from earlier (with equations for `m` and `a`), we obtain the actual implementations of these filters.
@@ -214,7 +214,7 @@ The code present in this repository is organized in four main classes, one for e
 |                   | **Constant sampling time** | **Irregular sampling time** |
 | ----------------- | -------------------------- | --------------------------- |
 | **Position form** | PIDA_pos.m                 | PIDA_pos_jitter.m           |
-| **Velocity form** | PIDA_vel                   | PIDA_vel_jitter             |
+| **Velocity form** | PIDA_vel.m                 | PIDA_vel_jitter.m           |
 
 Each class is organized in the same structure in order to guarantee ease of usage. Here the public methods to access the class functionalities are summarized:
 
@@ -230,8 +230,8 @@ Each class is organized in the same structure in order to guarantee ease of usag
 	- `n` is the order of the input filter defined in the set `{0,1,2}`
 	- `saturation` is a vector defined as `[low_bound up_bound]` 
 	- `Ts` in the case of constant sampling time, otherwise it is defined at each evaluation
-- **initialize** it initialize the controller with all the inner variable equal to 0, in the case of irregular sampling time, an initial `T_s` is required
+- **initialize** initializes the controller with all the inner variable equal to 0, in the case of irregular sampling time, an initial `T_s` is required
 - **set_parameters** is utilized to set all the parameters given in the constructor for gain-scheduling purposes
-- **get_parameters** gives all the parameters of the current implementation of the cotroller
-- **set_control_action** it sets the inner state of the controller to match the desired control action `u_k_des` 
-- **evaluate** evaluates the control law based on the measurement `y_k`, the reference `r_k`, and the feed forward action `uff_k`, in case of irregular sampling time also the current sampling period has `Ts_k` to be given
+- **get_parameters** gives all the parameters of the current implementation of the controller
+- **set_control_action** sets the inner state of the controller to match the desired control action `u_k_des` 
+- **evaluate** evaluates the control law based on the measurement `y_k`, the reference `r_k`, and the feedforward action `uff_k`, in case of irregular sampling time also the current sampling period `Ts_k` has to be given
