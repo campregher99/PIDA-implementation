@@ -1,14 +1,14 @@
 # PIDA-implementation
-This repository present a reference formulation of the Proportional Integrative Derivative Accelerative (PIDA) controller called also Proportional Integrative Double Derivative (PIDD) controller.
+This repository presents a reference formulation of the Proportional Integrative Derivative Accelerative (PIDA) controller called also Proportional Integrative Double Derivative (PIDD) controller.
 The **PIDA control law** can be initially written as:
 
 ```math
 u(t) = k_p \left( e(t) + \frac{1}{T_i} \int_0^t e(\tau) d\tau + T_d \frac{de(t)}{dt} + T_a \frac{d^2 e(t)}{dt^2} \right)
 ```
 
-Where:
+where:
 
-- `k_p` is the proportional gain  
+- ```k_p``` is the proportional gain  
 - `T_i` is the integral time constant  
 - `T_d` is the derivative time constant  
 - `T_a` is the acceleration (second derivative) time constant
