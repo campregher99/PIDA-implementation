@@ -175,9 +175,9 @@ Feedforward improves disturbance rejection and tracking without relying solely o
 
 ---
 
-### 4. Tracking Mode / Bump less Switching
+### 4. Tracking Mode / Bumpless Switching
 
-The controller supports a **tracking mode** (also called **bump less switching**) to allow smooth transitions between manual and automatic modes.
+The controller supports a **tracking mode** (also called **bumpless switching**) to allow smooth transitions between manual and automatic modes.
 
 - When engaged, the controller output tracks a specified value (`u_track`), and the internal states are adjusted accordingly.
 
